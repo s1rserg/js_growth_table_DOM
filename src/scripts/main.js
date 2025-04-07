@@ -8,7 +8,7 @@ const removeCol = document.querySelector('.remove-column');
 const tableBody = document.querySelector('.field').tBodies[0];
 
 appendRow.addEventListener('click', () => {
-  tableBody.append(tableBody.rows[0].cloneNode(true));
+  tableBody.append(tableBody.rows[tableBody.rows.length - 1].cloneNode(true));
 
   removeRow.disabled = false;
 
@@ -18,7 +18,7 @@ appendRow.addEventListener('click', () => {
 });
 
 removeRow.addEventListener('click', () => {
-  tableBody.rows[0].remove();
+  tableBody.rows[tableBody.rows.length - 1].remove();
 
   appendRow.disabled = false;
 
@@ -29,7 +29,7 @@ removeRow.addEventListener('click', () => {
 
 appendCol.addEventListener('click', () => {
   [...tableBody.rows].forEach((row) => {
-    row.append(document.createElement('td'));
+    row.append(row.children[row.children.length - 1].cloneNode(true));
   });
 
   removeCol.disabled = false;
@@ -41,7 +41,7 @@ appendCol.addEventListener('click', () => {
 
 removeCol.addEventListener('click', () => {
   [...tableBody.rows].forEach((row) => {
-    row.children[0].remove();
+    row.children[row.children.length - 1].remove();
   });
 
   appendCol.disabled = false;
